@@ -78,6 +78,10 @@ persist.camera.HAL3.enabled=1 \
 persist.camera.eis.enable=1 \
 persist.camera.CDS=off
 
+# Charger
+PRODUCT_PRODUCT_PROPERTIES += \
+ro.charger.enable_suspend=true
+
 # Cne/Dpm
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.vendor.cne.feature=1 \
