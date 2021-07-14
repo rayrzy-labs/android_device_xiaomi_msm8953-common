@@ -40,7 +40,7 @@ setup_vendor "$DEVICE_COMMON" "$VENDOR" "$LINEAGE_ROOT" true
 write_headers "mido tissot vince"
 
 # The standard common blobs
-write_makefiles "$MY_DIR"/proprietary-files-qc.txt true
+write_makefiles "$MY_DIR"/proprietary-files.txt true
 
 # We are done!
 write_footers
