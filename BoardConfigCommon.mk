@@ -21,8 +21,6 @@ TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a53
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a53
 
-TARGET_BOARD_PLATFORM := msm8953
-
 TARGET_BOARD_SUFFIX := _64
 TARGET_USES_64_BIT_BINDER := true
 
@@ -151,6 +149,10 @@ BOARD_ROOT_EXTRA_SYMLINKS := \
     /vendor/firmware_mnt:/firmware \
     /mnt/vendor/persist:/persist
 
+# Platform
+BOARD_USES_QCOM_HARDWARE := true
+TARGET_BOARD_PLATFORM := msm8953
+
 # Peripheral manager
 TARGET_PER_MGR_ENABLED := true
 
@@ -160,9 +162,6 @@ TARGET_TAP_TO_WAKE_NODE := "/sys/devices/platform/soc/78b7000.i2c/i2c-3/3-0020/i
 
 # Prop
 TARGET_SYSTEM_PROP := $(VENDOR_PATH)/system.prop
-
-# Qualcomm
-BOARD_USES_QCOM_HARDWARE := true
 
 # RIL
 TARGET_PROVIDES_QTI_TELEPHONY_JAR := true
