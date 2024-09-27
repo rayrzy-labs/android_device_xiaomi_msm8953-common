@@ -22,8 +22,8 @@ persist.vendor.audio.hw.binder.size_kbyte=1024 \
 persist.vendor.audio.speaker.prot.enable=false \
 ro.audio.soundfx.dirac=true \
 ro.af.client_heap_size_kbyte=7168 \
-ro.config.media_vol_steps=30 \
-ro.config.vc_call_vol_steps=6 \
+ro.config.media_vol_steps=25 \
+ro.config.vc_call_vol_steps=7 \
 ro.vendor.audio.sdk.fluencetype=fluence \
 ro.vendor.audio.sdk.ssr=false \
 vendor.audio.dolby.ds2.enabled=false \
@@ -100,7 +100,6 @@ persist.demo.hdmirotationlock=false \
 persist.hwc.enable_vds=1 \
 persist.hwc.mdpcomp.enable=true \
 ro.hardware.egl=adreno \
-ro.hardware.vulkan=msm8953 \
 ro.opengles.version=196610 \
 ro.qualcomm.cabl=2 \
 ro.surface_flinger.max_frame_buffer_acquired_buffers=3 \
@@ -113,6 +112,12 @@ vendor.gralloc.enable_fb_ubwc=1
 # DRM
 PRODUCT_PROPERTY_OVERRIDES += \
 drm.service.enabled=true
+
+# Enable B service adj transition by default
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.vendor.qti.sys.fw.bservice_enable=true \
+ro.vendor.qti.sys.fw.bservice_limit=5 \
+ro.vendor.qti.sys.fw.bservice_age=5000
 
 # Enable QC2 bufferqueue block-pool
 PRODUCT_PROPERTY_OVERRIDES += \
@@ -170,7 +175,6 @@ persist.vendor.data.mode=concurrent
 
 # Radio
 PRODUCT_PROPERTY_OVERRIDES += \
-DEVICE_PROVISIONED=1 \
 persist.dbg.volte_avail_ovr=1 \
 persist.dbg.vt_avail_ovr=1 \
 persist.dbg.wfc_avail_ovr=1 \
@@ -185,8 +189,9 @@ ril.subscription.types=NV,RUIM \
 ro.telephony.default_network=22,22 \
 ro.telephony.iwlan_operation_mode=legacy \
 telephony.lteOnCdmaDevice=1 \
-vendor.rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
-vendor.service.qti.ims.enabled=1
+rild.libpath=/vendor/lib64/libril-qc-qmi-1.so \
+vendor.service.qti.ims.enabled=1 \
+net.tcp.2g_init_rwnd=10
 
 # SurfaceFlinger
 PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
@@ -200,9 +205,24 @@ ro.surface_flinger.vsync_sf_event_phase_offset_ns=6000000
 PRODUCT_PROPERTY_OVERRIDES += \
 persist.timed.enable=true
 
+# Trim properties
+PRODUCT_PROPERTY_OVERRIDES += \
+ro.vendor.qti.sys.fw.use_trim_settings=true \
+ro.vendor.qti.sys.fw.empty_app_percent=50 \
+ro.vendor.qti.sys.fw.trim_empty_percent=100 \
+ro.vendor.qti.sys.fw.trim_cache_percent=100 \
+ro.vendor.qti.sys.fw.trim_enable_memory=2147483648
+
 # Usb
 PRODUCT_PROPERTY_OVERRIDES += \
-persist.vendor.usb.config.extra=none
+vendor.usb.rmnet.func.name=rmnet_bam \
+vendor.usb.rmnet.inst.name=rmnet \
+vendor.usb.rndis.func.name=rndis_bam \
+vendor.usb.dpl.inst.name=dpl
+
+# Wifi
+PRODUCT_PROPERTY_OVERRIDES += \
+wifi.interface=wlan0
 
 # USAP
 PRODUCT_SYSTEM_DEFAULT_PROPERTIES += \
